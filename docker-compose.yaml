@@ -1,0 +1,13 @@
+version: "3.3"
+services:
+  whagpt:
+    build: .
+    volumes:
+      - .:/code
+    working_dir: /code
+    command:
+      - /bin/sh
+      - -c
+      - |
+        npm install --verbose
+        npm run start
