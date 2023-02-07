@@ -9,6 +9,7 @@ require("dotenv").config()
 // Prefix check
 const prefixEnabled = process.env.PREFIX_ENABLED == "true"
 const prefix = 'g'
+const greeting = process.env.GREETING_PROMPT == "true"
 
 //track convos
 const conversations = {}
@@ -71,13 +72,19 @@ const handleMessage = async (message: any, prompt: any) => {
         {
         console.log("creating new conversation for ${message._data.id.remote}");
         if(prefixEnabled === true)
-{
-message.reply("from now on, whenever you type the prefix before your message, you will be chatting with chatgpt instead of me.");
-}        
-else
-{
-message.reply("from now on, your messages will be answered by chatgpt");
-} 
+            {
+                if(greeting === true)
+                {
+                    message.reply("from now on, whenever you type the prefix before your message, you will be chatting with chatgpt instead of me.");
+                }
+            }        
+            else
+            { 
+                if(greeting === true)
+                {
+            message.reply("from now on, your messages will be answered by chatgpt");
+                }
+            } 
        if(prompt === "reset")
         {
         message.reply("conversation reset");
