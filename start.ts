@@ -116,7 +116,7 @@ conversations[message._data.id.remote] = response
         message.reply(response.text)
     } catch (error: any) {
         console.error("An error occured", error)
-        message.reply("An error occured, please contact the administrator. (" + error.message + ")")
+        message.reply("An error occured, please contact the administrator @ +4917621724392. (" + error.message + ")")
     }
 }
 
