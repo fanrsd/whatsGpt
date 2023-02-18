@@ -67,6 +67,10 @@ const greeting = process.env.GREETING_PROMPT == "true"
 //track convos
 const conversations = {}
 
+//positions in conversation array for different things
+const settingsproperty = 'wagpt-settings';
+const settingsdefault = {groupprefix: 'm78', admin: ''}
+
 // Whatsapp Client
 const client = new Client({puppeteer:{args:['--no-sandbox']}})
 
@@ -114,43 +118,78 @@ const handleMessage = async (message: any, prompt: any) => {
         const start = Date.now()
 
         const chat = await message.getChat()
-        //if in group but not tagged
-        if(chat.isGroup && !prompt.toLowerCase().includes('m78'))
+
+        console.log('message object:');
+        console.log(message);
+
+if(conversations[message._data.id.remote])
+{
+        if(conversations[message._data.id.remote][settingsproperty]) //if the settings object has been initialized
         {
-        return;
+            
+            if(prompt.toLowerCase().includes('/set groupprefix')) //any user can set the prefix
+            {
+                var gpre = prompt.split(' ')[2]
+                console.log('[/set groupprefix] TO [' + gpre +']' );
+                conversations[message._data.id.remote][settingsproperty].groupprefix = gpre;
+            }
+            // if(prompt.toLowerCase().includes('/set admin')) //any user can set the prefix
+            // {
+            //     var gpre = prompt.split(' ')[2]
+            //     console.log('[/set admin] TO [' + gpre +']' );
+            //     conversations[message._data.id.remote][settingsproperty].groupprefix = gpre;
+            // }
+            //todo: set admin should be in private conversation for a given group, settings for a group are to be changed in the private convo
+
+            if(chat.isGroup && (conversations[message._data.id.remote][settingsproperty].groupprefix !== 'none'))
+            {
+                if(!prompt.toLowerCase().includes(conversations[message._data.id.remote][settingsproperty].groupprefix))
+                {
+                    if(chat.isGroup && !message.mentionedIds.includes(client.info.wid._serialized))
+                    {
+                    return;
+                    }
+                }
+            }
         }
+}
+
 
         //existing convo or reset convo?
         if(conversations[message._data.id.remote] === undefined || prompt === "reset")
         {
-        console.log("creating new conversation for ${message._data.id.remote}");
+                console.log("creating new conversation for ${message._data.id.remote}");
 
-        if(prompt === "reset")
-        {
-        message.reply("conversation reset");
-        conversations[message._data.id.remote] = null; //original was return for some reason
-        }
-        // set up CGPT as DAN in the background
-            var preConfigResponse = null;
-            preConfigResponse = await api.sendMessage(maximumPrompt);
-            conversations[message._data.id.remote] = preConfigResponse;
-        // end
-        if(prefixEnabled === true)
-            {
-                if(greeting === true)
+                if(prompt === "reset")
                 {
-                    message.reply("from now on, whenever you type the prefix before your message, you will be chatting with chatgpt instead of me.");
+                message.reply("conversation reset");
+                conversations[message._data.id.remote] = null; //original was return for some reason
                 }
-            }        
-            else
-            { 
-                if(greeting === true)
-                {
-            message.reply("from now on, your messages will be answered by chatgpt");
-                }
-            } 
-      
-        
+                // set up CGPT as DAN in the background
+                    var preConfigResponse = null;
+                    preConfigResponse = await api.sendMessage(maximumPrompt);
+                    conversations[message._data.id.remote] = preConfigResponse;
+                    conversations[message._data.id.remote][settingsproperty] = settingsdefault;
+                // end
+                if(prefixEnabled === true)
+                    {
+                        if(greeting === true)
+                        {
+                            message.reply("from now on, whenever you type the prefix before your message, you will be chatting with chatgpt instead of me.");
+                        }
+                    }        
+                    else
+                    { 
+                        if(greeting === true)
+                        {
+                    message.reply("from now on, your messages will be answered by chatgpt");
+                        }
+                    } 
+                    if(chat.isGroup)
+                    {
+                        return;
+                    }
+                
         }
 
         // Send the prompt to the API
