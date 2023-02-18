@@ -115,7 +115,7 @@ const handleMessage = async (message: any, prompt: any) => {
 
         const chat = await message.getChat()
         //if in group but not tagged
-        if(chat.isGroup && !prompt.toLowerCase().includes('chatgpt'))
+        if(chat.isGroup && !prompt.toLowerCase().includes('m78'))
         {
         return;
         }
