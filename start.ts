@@ -5,19 +5,7 @@ const process = require("process");
 const qrcode = require("qrcode-terminal");
 const { Client } = require("whatsapp-web.js");
 const fs = require("fs");
-const log = (wamessage:any,message:string, silent:boolean = true) => {
-   
-    if(!silent){console.log(message);} 
-    
-    if (!fs.existsSync(`./logs/${wamessage._data.id.remote}_log.txt`)) {
-        fs.writeFile(`./logs/${wamessage._data.id.remote}_log.txt`,`${wamessage._data.notifyName} [${wamessage._data.id.remote}]: \n`+message, (err) => err && console.error(err));
-    }
-    else
-    {    
-        fs.appendFile(`./logs/${wamessage._data.id.remote}_log.txt`,`${wamessage._data.notifyName} [${wamessage._data.id.remote}]: \n`+message, (err) => err && console.error(err));
-
-    }
-};
+const log = (wamessage:any,message:string, silent:boolean = true) => {if(!silent){console.log(message);} fs.appendFile(`./logs/${wamessage._data.id.remote}_log.txt`,`${wamessage._data.notifyName} [${wamessage._data.id.remote}]: \n`+message, (err) => err && console.error(err));};
 const client = new Client({puppeteer:{args:['--no-sandbox']}});
 const api = new ChatGPTAPI({apiKey: process.env.APIKEY, debug: false});
 //convo tracking
@@ -46,12 +34,13 @@ var systemMessage = {_data: {id: {remote: 'system'}}};
 
 // Entrypoint
 const start = async () => {
-    log(systemMessage, 'initializing: logs directory')
-    
     if (!fs.existsSync("./log")) {
         log(systemMessage, 'initializing: logs directory does not exist, creating')
         fs.mkdirSync('./log');
     }
+    
+    log(systemMessage, 'initializing: logs directory')
+    
 
 
     log(systemMessage,'initializing: reading convo memory',false);
