@@ -7,12 +7,15 @@ const { Client } = require("whatsapp-web.js");
 const fs = require("fs");
 const log = (wamessage:any,message:string, silent:boolean = true) => {
     if(!silent){console.log(message);} 
-    if (!fs.existsSync(`./logs/${wamessage._data.id.remote}_log.txt`)) {
-        fs.writeFile(`./logs/${wamessage._data.id.remote}_log.txt`,'', (err) => err && console.error(err));
-        log(systemMessage, 'initializing: log file: '+ `./logs/${wamessage._data.id.remote}_log.txt`);
+    if (!fs.existsSync(`./logs`)) {
+        fs.mkdir(`./logs`, (err) => err && console.error(err));
+    }
+    else
+    {
+        fs.appendFile(`./logs/${wamessage._data.id.remote}_log.txt`,`${wamessage._data.notifyName} [${wamessage._data.id.remote}]: \n`+message, (err) => err && console.error(err));
     }
     
-    fs.appendFile(`./logs/${wamessage._data.id.remote}_log.txt`,`${wamessage._data.notifyName} [${wamessage._data.id.remote}]: \n`+message, (err) => err && console.error(err));
+    
 };
 const client = new Client({puppeteer:{args:['--no-sandbox']}});
 const api = new ChatGPTAPI({apiKey: process.env.APIKEY, debug: false});
