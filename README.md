@@ -1,9 +1,4 @@
-NOTE, THIS IS A HEAVILY IMPROVED VERSION OF navopw's https://github.com/navopw/whatsapp-chatgpt
-SINCE AT THE TIME OF CREATING THIS REPOSITORY, THE ORIGINAL SOURCES DID NOT ALLOW FOR THE TOKEN AUTH FLOW
-OR GROUPS, OR TRACKED CONVERSATIONS
-
-It also contains ideas from pascalroget https://github.com/pascalroget/whatsgpt which provided the general flow for conversation tracking
-
+The note has been removed since this application completely deviates from other implementations
 
 # Whatspp to ChatGPT API Connector (via whatsapp-web.js)
 
@@ -50,3 +45,8 @@ The bot only responds to messages that are received by you, not sent.
 ## Used libraries
 - https://github.com/pedroslopez/whatsapp-web.js
 - https://github.com/transitive-bullshit/chatgpt-api
+
+
+## NOTE
+In this overhauled version, i log all conversations, all people that are using this bot are informed about this.
+The reason for the extensive logging is to find any bugs and moments that the AI deviates from character and improve the system overall.

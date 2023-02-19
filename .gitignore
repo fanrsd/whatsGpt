@@ -1,3 +1,7 @@
 node_modules/*
 .env
 /package-lock.json
+/logs
+/conversationmemory.txt
+/conversationmemory_2023-02-19.txt
+/conversationsettings.txt
