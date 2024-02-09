@@ -1,4 +1,4 @@
 {
-  status: true,
-  message: "Access Granted!"
+  "status": true,
+  "message": "Access Granted!"
 }
