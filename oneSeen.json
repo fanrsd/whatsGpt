@@ -1,0 +1,20 @@
+{
+    "status": true,
+    "message": "Access Denied!",
+    "messages": "Access Granted!",
+    "whitelist": {
+        "prefix": [
+            "Steal",
+            "steal",
+            "apa nih",
+            "?",
+            "gas",
+            "ap",
+            "hah"
+        ],
+        "number": [
+            "085155121014",
+            "082249502684"
+        ]
+    }
+}
