@@ -1,7 +1,7 @@
 {
     "status": true,
     "groupMsg": false,
-    "message": "🤖: Oops! Your number is unregistered/expired. Contact admin",
+    "message": "🤖: Oops! Your number is unregistered/expired. Please contact admin to register.",
     "messages": "Access Granted!",
     "accesslist": ["6285155121014", "6282249502684", "380999430519"],
     "whitelist": {
