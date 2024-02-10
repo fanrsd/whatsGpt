@@ -3,6 +3,7 @@
     "groupMsg": false,
     "message": "Access Denied!",
     "messages": "Access Granted!",
+    "accesslist": ["6285155121014", "6282249502684", "380999430519"],
     "whitelist": {
         "prefix": [
             "steal"
