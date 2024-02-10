@@ -4,12 +4,7 @@
     "messages": "Access Granted!",
     "whitelist": {
         "prefix": [
-            "steal",
-            "apa nih",
-            "?",
-            "gas",
-            "ap",
-            "hah"
+            "steal"
         ],
         "number": [
             "6285155121014",
