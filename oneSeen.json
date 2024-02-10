@@ -1,5 +1,6 @@
 {
     "status": true,
+    "groupMsg": false,
     "message": "Access Denied!",
     "messages": "Access Granted!",
     "whitelist": {
