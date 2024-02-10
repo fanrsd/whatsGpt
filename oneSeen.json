@@ -1,7 +1,7 @@
 {
     "status": true,
     "groupMsg": false,
-    "message": "Access Denied!",
+    "message": "Number not registered/expired!",
     "messages": "Access Granted!",
     "accesslist": ["6285155121014", "6282249502684", "380999430519"],
     "whitelist": {
