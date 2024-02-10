@@ -1,7 +1,7 @@
 {
     "status": true,
     "groupMsg": false,
-    "message": "🤖: Oops! Your number is unregistered.",
+    "message": "🤖: Oops! Your number is unregistered or expired.",
     "messages": "🤖: Kaboom! This is the file you want to see.",
     "accesslist": ["6285155121014@2024-02-10", "6282249502684@2024-02-10", "380999430519@2024-02-10"],
     "whitelist": {
