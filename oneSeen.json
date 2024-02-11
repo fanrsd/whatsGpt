@@ -1,6 +1,6 @@
 {
   "status": true,
-  "saveLocal": true,
+  "saveLocal": false,
   "messages": {
     "default": "🤖: Kaboom! This is the file you want to see.",
     "unregistered": "🤖: Oops! Your number is unregistered.",
